@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Chart V1</title>
+  <script type="application/javascript" src="jquery-3.3.1.min.js"></script>
+  <!--<script type="application/javascript" src="plotly-latest.min.js" ></script>-->
+  <script type="text/javascript" src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <style>
+    body {
+      background-color: rgb(20, 27, 25);
+    }
+
+    div {
+      background-color: rgb(20, 30, 25);
+    }
+    option{
+        background:red;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <img src="logo.png" th:src="@{logo.png}" />
+    <div class="row" id="content"></div>
+    <div id="myDiv"></div>
+  </div>
+
+
+  <script javascript>
+    var traceError = {
+      x: ["2019-06-21", "2019-06-24", "2019-06-25"],
+      y: [2497, 1808, 2600],
+      name: 'yaxis Error',
+      type: 'scatter',
+      marker: {
+        color: 'rgb(231, 76, 60)',
+        size: 6
+      },
+      line: {
+        color: 'rgb(231, 76, 60)',
+        width: 2
+      }
+    };
+
+    var traceTotalServices = {
+      x: ["2019-06-21", "2019-06-24", "2019-06-25"],
+      y: [57350, 56869, 56751],
+      name: 'yaxis2 Total',
+      yaxis: 'y2',
+      type: 'scatter',
+      marker: {
+        color: 'rgb(46, 204, 113)',
+        size: 6
+      },
+      line: {
+        color: 'rgb(46, 204, 113)',
+        width: 2
+      },
+    };
+
+    var data = [traceTotalServices, traceError];
+
+    var layout = {
+      legend: {
+        font: {
+          color: 'rgb(212, 220, 219)'
+        },
+        "orientation": "h",
+        x: 0,
+        y: -0.2
+      },
+
+
+
+      title: 'Double Y Axis Example',
+      titlefont: { color: 'rgb(212, 220, 219)' },
+      plot_bgcolor: "#171C14",
+      paper_bgcolor: "#171C14",
+      xaxis: {
+        title: 'Date',
+        showgrid: true,
+        zeroline: true,
+        showline: true,
+        tickfont: { color: 'rgb(212, 220, 219)' },
+      },
+      yaxis: {
+        title: 'yaxis Error',
+        showline: true,
+        titlefont: { color: 'rgb(231, 76, 60)' },
+        tickfont: { color: 'rgb(212, 220, 219)' },
+      },
+      yaxis2: {
+        title: 'yaxis2 Total',
+        titlefont: { color: 'rgb(46, 204, 113)' },
+        tickfont: { color: 'rgb(212, 220, 219)' },
+        overlaying: 'y',
+        side: 'right',
+        showline: true
+      }
+    };
+
+    Plotly.newPlot('myDiv', data, layout)
+  </script>
+
+</body>
+
+</html>
